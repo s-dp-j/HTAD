@@ -445,7 +445,7 @@ class MultiDomainHTAD(nn.Module):
         gpt2_model_path,
         semantic_source,
         paper_faithful,
-        causal_constraint
+        causal_constraint,
         use_global_cross_attention,
     ) -> None:
         super().__init__()
