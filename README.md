@@ -10,17 +10,14 @@ HTAD is designed for joint anomaly detection across heterogeneous multivariate t
 
 The framework contains four main components:
 
-- **Domain-specific representation learning**  
-  Lightweight domain-specific autoencoders map heterogeneous temporal patches into a common-dimensional latent interface.
+- **Data preprocessing module**  
+  Raw multivariate time series from each domain are partitioned into temporal patches and transformed by a domain-specific encoder into fixed-dimensional latent representations. Meanwhile, textual domain descriptions are represented using pretrained GPT-2 token embeddings, aggregated and projected into the latent feature space to provide explicit domain-conditioned information.
 
-- **Domain-conditioned modeling**  
-  Predefined textual domain descriptions are represented using frozen pretrained GPT-2 token embeddings and used as explicit domain-level conditional information.
+- **Time series reconstruction module**  
+  The temporal and domain representations are fused and processed by a shared causal-global reconstruction network, which combines causally constrained temporal modeling with global context aggregation over all causally accessible patch positions. A domain-specific reconstruction head subsequently maps the reconstructed latent representation back to the original variable space.
 
-- **Causal-global reconstruction**  
-  A shared temporal reconstruction network combines causally constrained self-attention with cross-attention over causally accessible encoder states.
-
-- **Reliability-aware adversarial learning**  
-  Reconstruction-based reliability estimation is used to reduce the influence of poorly reconstructed training samples during adversarial optimization.
+- **Dynamic weighting discriminator module**  
+  HTAD uses reconstruction error as a sample reliability signal and estimates robust domain-specific calibration statistics from training data. A warm-up and gradual reweighting mechanism then adaptively adjusts sample contributions to reconstruction and adversarial optimization, reducing the influence of poorly reconstructed observations while improving training robustness.
 
 ## License
 This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
