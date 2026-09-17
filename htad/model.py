@@ -66,12 +66,12 @@ class FrozenSemanticEncoder(nn.Module):
 
     def __init__(
         self,
-        text: str,
-        d_model: int,
-        token_count: int = 8,
-        backend: str = "hash",
-        model_path: Optional[str] = None,
-        project: bool = True,
+        text,
+        d_model,
+        token_count,
+        backend,
+        model_path,
+        project,
     ) -> None:
         super().__init__()
         self.backend = backend
@@ -193,11 +193,11 @@ class CausalGlobalDecoderLayer(nn.Module):
 
     def __init__(
         self,
-        d_model: int,
-        n_heads: int,
-        dropout: float,
-        causal: bool = True,
-        use_cross_attention: bool = True,
+        d_model,
+        n_heads,
+        dropout,
+        causal,
+        use_cross_attention,
     ) -> None:
         super().__init__()
         self.causal = bool(causal)
@@ -245,14 +245,14 @@ class CausalGlobalBackbone(nn.Module):
 
     def __init__(
         self,
-        patch_count: int,
-        latent_dim: int,
-        n_heads: int,
-        encoder_layers: int,
-        decoder_layers: int,
-        dropout: float,
-        causal_constraint: bool = True,
-        use_global_cross_attention: bool = True,
+        patch_count,
+        latent_dim,
+        n_heads,
+        encoder_layers,
+        decoder_layers,
+        dropout,
+        causal_constraint,
+        use_global_cross_attention,
     ) -> None:
         super().__init__()
         self.patch_count = int(patch_count)
@@ -306,25 +306,25 @@ class HTAD(nn.Module):
 
     def __init__(
         self,
-        input_dim: int,
-        window_size: int = 96,
-        latent_dim: int = 64,
-        ae_hidden_dim: int = 128,
-        patch_len: int = 16,
-        patch_stride: int = 16,
-        d_model: int = 64,
-        n_heads: int = 4,
-        encoder_layers: int = 6,
-        decoder_layers: int = 3,
-        dropout: float = 0.1,
-        semantic_text: str = "multivariate time series anomaly detection",
-        semantic_tokens: int = 8,
-        semantic_backend: str = "hash",
-        gpt2_model_path: Optional[str] = None,
-        paper_faithful: bool = False,
-        allow_gpt2_projection: bool = False,
-        causal_constraint: bool = True,
-        use_global_cross_attention: bool = True,
+        input_dim,
+        window_size,
+        latent_dim,
+        ae_hidden_dim,
+        patch_len,
+        patch_stride,
+        d_model,
+        n_heads,
+        encoder_layers,
+        decoder_layers,
+        dropout,
+        semantic_text,
+        semantic_tokens,
+        semantic_backend,
+        gpt2_model_path,
+        paper_faithful
+        allow_gpt2_projection,
+        causal_constraint,
+        use_global_cross_attention,
     ) -> None:
         super().__init__()
         del allow_gpt2_projection
@@ -430,23 +430,23 @@ class MultiDomainHTAD(nn.Module):
 
     def __init__(
         self,
-        domain_specs: Mapping[str, Tuple[int, str]],
-        window_size: int = 96,
-        latent_dim: int = 64,
-        ae_hidden_dim: int = 128,
-        patch_len: int = 32,
-        patch_stride: int = 16,
-        n_heads: int = 4,
-        encoder_layers: int = 6,
-        decoder_layers: int = 3,
-        dropout: float = 0.1,
-        semantic_tokens: int = 8,
-        semantic_backend: str = "hash",
-        gpt2_model_path: Optional[str] = None,
-        semantic_source: str = "text",
-        paper_faithful: bool = True,
-        causal_constraint: bool = True,
-        use_global_cross_attention: bool = True,
+        domain_specs,
+        window_size,
+        latent_dim,
+        ae_hidden_dim,
+        patch_len,
+        patch_stride,
+        n_heads,
+        encoder_layers,
+        decoder_layers,
+        dropout,
+        semantic_tokens,
+        semantic_backend,
+        gpt2_model_path,
+        semantic_source,
+        paper_faithful,
+        causal_constraint
+        use_global_cross_attention,
     ) -> None:
         super().__init__()
         if not domain_specs:
@@ -601,10 +601,10 @@ class MLPDiscriminator(nn.Module):
 
     def __init__(
         self,
-        input_dim: int,
-        hidden_dim: int = 128,
-        dropout: float = 0.3,
-        paper_faithful: bool = False,
+        input_dim,
+        hidden_dim,
+        dropout,
+        paper_faithful,
     ) -> None:
         super().__init__()
         half = max(8, hidden_dim // 2)
@@ -660,11 +660,11 @@ class DatasetAwareCausalForecaster(nn.Module):
 
     def __init__(
         self,
-        entity_specs: Mapping[str, Tuple[int, int]],
-        history_length: int,
-        hidden_dim: int = 32,
-        semantic_dim: int = 768,
-        dropout: float = 0.1,
+        entity_specs,
+        history_length,
+        hidden_dim,
+        semantic_dim,
+        dropout,
     ) -> None:
         super().__init__()
         self.history_length = int(history_length)
