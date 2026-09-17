@@ -1,3 +1,0 @@
-{
-    "generic_domain": "Domain: multivariate time series from a complex operational system. System: multiple interacting components equipped with sensors and actuators, operating under coordinated control logic. Signals: heterogeneous sensor measurements capturing system states, exhibiting cross-variable correlations and varying noise levels. Dynamics: non-stationary temporal behaviors with mode switching, long-range dependencies, and occasional distributional shifts. Anomalies: abnormal patterns caused by component faults, control deviations, or unexpected state transitions that disrupt normal system coordination."
-}
