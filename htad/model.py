@@ -321,7 +321,7 @@ class HTAD(nn.Module):
         semantic_tokens,
         semantic_backend,
         gpt2_model_path,
-        paper_faithful
+        paper_faithful,
         allow_gpt2_projection,
         causal_constraint,
         use_global_cross_attention,
